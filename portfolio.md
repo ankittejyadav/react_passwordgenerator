@@ -1,59 +1,34 @@
-# ðŸš€ [Project Name]
+---
+tagline: "A high-entropy, cryptographically secure client-side password generation engine built with React."
+role: "Solo Frontend Architect"
+status: "completed"
+stack:
+  - React.js
+  - JavaScript (ES6+)
+  - Web Crypto API (CSPRNG)
+  - CSS3 / Tailwind CSS
+  - Netlify (Edge Deployment)
+highlights:
+  - "Engineered a zero-dependency, client-side generation engine leveraging the Web Crypto API for cryptographically secure pseudo-randomness (CSPRNG)."
+  - "Optimized rendering performance by implementing memoized state hooks (useCallback, useRef) to eliminate redundant DOM updates during real-time entropy adjustments."
+description: "A high-performance, zero-trust utility designed to generate cryptographically secure passwords entirely within the client-side runtime, eliminating server-side interception vectors."
+---
 
-> *An advanced, highly-scalable software solution built with modern engineering practices.*
+## 🌟 Architectural Vision & System Design
 
-## ðŸŒŸ Architecture & Overview
-[Project Name] is designed with a focus on high availability, performance, and maintainability. Describe the core problem this repository solves and the architectural patterns used (e.g., Microservices, Event-Driven Architecture, Serverless).
+The system is architected as a lightweight, zero-trust Single Page Application (SPA). In security-sensitive utilities, minimizing the attack surface is paramount. Therefore, the architectural vision centers on a **decentralized, zero-backend topology** where all cryptographic operations, state transitions, and memory allocations occur strictly within the user's local browser sandbox.
 
-## ðŸ’» Technical Stack & Proficiencies Showcase
-
-### Backend & Core Systems
-- **Languages:** Node.js, Python, Go, Java, C++
-- **Frameworks:** Express.js, Django, FastAPI, Spring Boot
-- **API Design:** RESTful APIs, GraphQL, gRPC, WebSockets
-
-### Frontend Engineering
-- **Core:** JavaScript (ES6+), TypeScript, HTML5, CSS3/SASS
-- **Frameworks:** React.js, Next.js, Vue.js, Angular
-- **State Management:** Redux, Context API, Zustand, MobX
-
-### Databases & Caching
-- **Relational (SQL):** PostgreSQL, MySQL
-- **NoSQL:** MongoDB, DynamoDB, Cassandra
-- **Caching & Message Queues:** Redis, Memcached, RabbitMQ, Apache Kafka
-
-### DevOps, Cloud & Infrastructure
-- **Cloud Providers:** AWS (EC2, S3, Lambda), Google Cloud Platform (GCP), Microsoft Azure
-- **Containerization & Orchestration:** Docker, Kubernetes (K8s)
-- **CI/CD & Automation:** GitHub Actions, Jenkins, GitLab CI, Terraform (IaC), Ansible
-
-## âš™ï¸ Engineering Best Practices
-- **Testing:** Comprehensive Unit, Integration, and End-to-End (E2E) testing (e.g., Jest, Cypress, PyTest).
-- **Code Quality:** Strict linting, static type checking, and rigorous code reviews.
-- **Security:** Implementation of OAuth 2.0, JWT, data encryption, and standard OWASP security practices.
-
-## ðŸ“ˆ Scalability & Performance
-Detail any specific performance optimizations made in this repository (e.g., database indexing, query optimization, CDN usage, load balancing strategies, horizontal scaling).
-
-## ðŸš€ Getting Started
-```bash
-# Clone the repository
-git clone https://github.com/ankittejyadav/[repo-name].git
-
-# Navigate into the project
-cd [repo-name]
-
-# Install dependencies
-npm install  # or equivalent package manager
-
-# Run the development server
-npm run dev
+```
+[User Input: Length/Filters] ──> [React State (useState/useContext)]
+                                         │
+                                         ▼
+[Secure Output Buffer] <── [CSPRNG Engine (Web Crypto API)]
+         │
+         ├──> [useRef DOM Reference] ──> [Clipboard API (Async)]
+         └──> [UI Render (Memoized via useCallback)]
 ```
 
-## ðŸ”— Project Links
-- [Live Deployment / Demo](#)
-- [Comprehensive Documentation](#)
-- [System Architecture Diagram](#)
-
----
-*This repository represents a sample of my technical capabilities. For a complete overview of my engineering portfolio, visit my [GitHub Profile](https://github.com/ankittejyadav).*
+### Core Data & System Flow
+*   **Ingestion / Input**: Configuration parameters (password length, character set exclusions, and inclusion of special/numeric/alphabetic characters) are captured via controlled React components.
+*   **Processing / Logic**: When the generation pipeline is triggered, a specialized generation engine dynamically constructs a character pool. Instead of relying on standard pseudo-random number generators (PRNGs), the system queries the browser's hardware-seeded cryptographic subsystem to extract high-entropy byte arrays.
+*   **Persistence & Caching**: To maintain a strict zero-knowledge security posture, the application implements **ephemeral state management**. Generated secrets
